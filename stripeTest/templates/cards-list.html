@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cards list</title>
+</head>
+<body>
+    <h1>cards list</h1>
+
+    <div class="cards-container"></div>
+</body>
+</html>
+
+<script>
+
+    async function requestAPI(url, data, headers, method) {
+        // Default options are marked with *
+        const response = await fetch(url, {
+            method: method,
+            mode: 'cors',
+            // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            headers: headers,
+            body: data,
+        });
+        return response; // parses JSON response into native JavaScript objects
+    }
+
+    async function cards(){
+        let headers = {
+            'Content-Type': 'application/json',
+        };
+        let response = await requestAPI("/payment-methods/", null, headers, "GET");
+        let res = await response.json();
+        console.log(res, response)
+
+        if (res.success){
+            let container = document.querySelector(".cards-container");
+            container.innerHTML = '';
+            res.payment_methods.forEach((method, index) =>{
+                card =document.createElement("div")
+                card.innerHTML = `${index} -> brand: ${method.card.brand}, exp_month: ${method.card.exp_month}, exp_year: ${method.card.exp_year}, last4: ${method.card.last4}`;
+               container.appendChild(card)                
+            })
+        }
+    }
+    cards()
+</script>

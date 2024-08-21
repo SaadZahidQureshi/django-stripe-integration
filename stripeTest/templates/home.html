@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fastly.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Starbucks Coffee Website Landing Page</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Nunito+Sans:ital,wght@0,400;0,700;0,800;1,300;1,700&family=Poppins:wght@400;500;600;700;800;900&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        section{
+            position: relative;
+            width: 100%;
+            min-width: 100vh;
+            padding: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+        }
+        header{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header .logo{
+            position: relative;
+            max-width: 80px;
+        }
+        header ul{
+            position: relative;
+            display: flex;
+        }
+        header ul li{
+            list-style: none;
+        }
+        header ul li a{
+            display: inline-block;
+            color: #333;
+            font-weight: 800;
+            margin-left: 40px;
+            text-decoration: none;
+        }
+        .container{
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .container .text-box{
+            position: relative;
+            max-width: 600px;
+        }
+        .container .text-box h2{
+            color: #333;
+            font-size: 4em;
+            font-weight: 500px;
+        }
+        .container .text-box h2 span{
+            color: #017143;
+            font-size: 1.2em;
+            font-weight: 900;
+        }
+        .container .text-box p{
+            color: #333;
+        }
+        .container .text-box a{
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 20px;
+            background: #017143;
+            color: #fff;
+            border-radius: 40px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+        .container .img-box{
+            width: 600px;
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50px;
+            margin-top: 50px;
+        }
+        .container .img-box img{
+            max-width: 340px;
+        }
+        .thumb{
+            position: absolute;
+            left: 50%;
+            bottom: 20px;
+            transform: translateX(-50%);
+            display: flex;
+        }
+        .thumb li{
+            list-style: none;
+            display: inline-block;
+            margin: 0 20px;
+            padding: ;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+        .thumb li:hover{
+            transform: translateY(-15px);
+        }
+        .thumb li img{
+            max-width: 600px;
+        }
+        .social{
+            position: absolute;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .social li {
+            list-style: none;
+        }
+        .social li a{
+            display: inline-block;
+            margin: 5px 0;
+            transform: scale(0.6);
+            filter: invert(1);
+        }
+        .circle{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #017143;
+            clip-path: circle(600px at right 800px);
+        }
+    </style>
+    
+    <style>
+        .back-svg {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: #FFFFFF;
+            box-shadow: 0px 3px 11px 4px #0000000F;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 30px;
+            left: 30px;
+            cursor: pointer;
+        }
+        
+        .main-content-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        #add-category-modal .modal-dialog {
+            max-width: unset;
+            width: 576px;
+            height: 654px;
+        }
+        
+        #add-category-modal .modal-header {
+            padding: 0!important;
+            border-radius: 15px!important;
+        
+        }
+        
+        #add-category-modal .modal-content {
+            padding: 30px 134px;
+            /* height: 600px; */
+            width: 900px;
+        }
+        
+        #add-category-modal .modal-footer,
+        #add-category-modal .modal-content {
+            border-radius: 15px!important;
+            width: 100%;
+            /* height: 100%; */
+        }
+        
+        #add-category-modal .modal-header {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        #add-category-modal .modal-header > span:first-child {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 19.2px;
+            text-align: center;
+            color: #000000;
+        }
+        
+        #add-category-modal .modal-header > span:last-child {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 16.8px;
+            text-align: center;
+            color: #313131;
+        }
+        
+        #add-category-modal .modal-body {
+            padding: 0px!important;
+        }
+        
+        .add-card-container .modal-body {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .add-card-container .modal-body .input-wrapper {
+            width: 48% !important;
+        }
+        
+        #add-category-modal .modal-body .input-wrapper{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            position: relative;
+            width: 100%;
+            align-items: unset;
+            /* align-self: flex-end; */
+        }
+        
+        #add-category-modal .modal-body .input-wrapper label {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 16.8px;
+            text-align: left    ;
+            color: #000000;
+        }
+        
+        #add-category-modal .modal-body .input-wrapper > div {
+            width: 100% !important;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        #add-category-modal .modal-body .input-wrapper > div > svg{
+            position: absolute;
+            right: 10px;
+        }
+        
+        #add-category-modal .modal-body .input-wrapper > div input,
+        #add-category-modal .modal-body .input-wrapper > div textarea {
+            width: 100%;
+            height: 40px;
+            border: none;
+            border-radius: 10px;
+            border: 1px solid #ECECEC;
+            box-shadow: 0px 0px 5px 0px #00000021;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 16.8px;
+            resize: none;   
+        }
+        
+        .price-sku-container{
+            width: 48%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .price-sku-container .input-wrapper {
+            width: 100% !important;
+        }
+        
+        #add-category-modal .modal-body .input-wrapper.price > div input{
+            padding-right: 45px;
+        }
+        
+        #add-category-modal .modal-body .input-wrapper > div textarea {
+            padding: 10px;
+            /* height: 124px; */
+        }
+        
+        .description-shows-container{
+            width: 48%;
+        }
+        
+        .description-shows-container > .input-wrapper {
+            width: 100% !important;
+        }
+        
+        #add-category-modal .modal-body .input-wrapper.thumbnail {
+            width: 100% !important;
+        }
+        
+        #add-category-modal .modal-body .input-wrapper.thumbnail > label{
+            text-align: center;
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            background: #FFFFFF;
+            border: 1px solid #ECECEC;
+            box-shadow: 0px 0px 5px 0px #00000021;
+            align-self: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .thumbnail {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+        
+        #add-category-modal .modal-body .input-wrapper.thumbnail > span{
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 16.8px;
+            text-align: center;
+            color: #000000;
+        }
+        
+        
+        .dropdown > .dropdown-menu.add{
+            width: 100%;
+            border-radius: 10px;
+            padding: 0;
+            max-height: 190px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        
+        .dropdown > .dropdown-menu > .dropdown-item:first-of-type {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        
+        .dropdown > .dropdown-menu > .dropdown-item:last-of-type {
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        
+        .dropdown > .dropdown-menu > .dropdown-item:hover{
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        #add-category-modal .modal-body .input-wrapper.color-picker > label {
+            width: 100%;
+            height: 124px;
+            background: #FFFFFF;
+            border: 1px solid #ECECEC;
+            box-shadow: 0px 0px 5px 0px #00000021;
+            border-radius: 10px;
+            /* padding: 10px; */
+            
+        }
+        
+        #add-category-modal .modal-body .input-wrapper.color-picker > label > div{
+            width: 100%;
+            height: 100%;
+            padding: 0px !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #add-category-modal .modal-body .input-wrapper.color-container {
+            align-self: flex-end;
+        }
+        
+        .tag{
+            width: fit-content;
+            height: fit-content;
+            background: #8EC54929;    ;
+            padding: 13px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 7px;
+            gap: 10px;
+            position: relative;
+            padding-right: 25px;
+        }
+        
+        .remove-tag {
+            position: absolute;
+            top: 0px;
+            right: 5px;
+        }
+        
+        #add-category-modal .modal-body .input-wrapper.color-container > div.color-container {
+            width: 100%;
+            height: 170px;
+            background: #FFFFFF;
+            border: 1px solid #ECECEC;
+            box-shadow: 0px 0px 5px 0px #00000021;
+            border-radius: 10px;
+            padding: 10px;
+            align-items: unset;
+        
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 5px;
+            overflow-y: auto;
+        }
+        
+        
+        #add-category-modal .error-div {
+            text-align: left;
+            /* padding: 0px 30px; */
+            /* margin-top: 5px; */
+        }
+        
+        
+        #add-category-modal .modal-footer {
+            padding: 0px!important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* gap: 15px; */
+            margin-top: 15px;
+        }
+        
+        #add-category-modal .modal-footer > div > span{
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 16.8px;
+            text-align: center;
+            color: #000000;
+        }
+        
+        #add-category-modal .modal-footer > div > span > a{
+            font-family: Lato;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 16.8px;
+            text-align: center;
+            color: var(--primary-color);
+        }
+        #add-category-modal .modal-footer > button {
+            width: 25%;
+            height: 34px;
+            border: none;
+            border-radius: 10px;
+            color: #FFFFFF;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 26px;
+            text-align: center;
+        }
+        
+        #add-category-modal .modal-footer > button:first-of-type {
+            background: #FF0000;
+        }
+        
+        #add-category-modal .modal-footer > button:last-of-type {
+            background: var(--primary-color);
+        }
+        
+        #add-category-modal .modal-footer > button > span {
+            color: #FFFFFF;
+        }
+        
+        
+    </style>
+
+</head>
+<body>
+    <section>
+        <div class="circle"></div>
+        <header>
+            <a href="#"><img src="https://raw.githubusercontent.com/farazc60/Project-Images/main/starbucks/logo.png" class="logo"></a>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Menu</a></li>
+                <li><a href="#">What's New</a></li>
+                <li><a href="#">Contact</a></li>
+                {% if user.is_authenticated %}<li><a href="/cards/">Cards</a></li>{% endif %}
+                {% if user.is_authenticated %}<li><a  onclick="openAddCardModal('add-category-modal')">Add Card</a></li>{% endif %}
+
+                {% if user.is_authenticated %}<li><a href="#">{{user.email}}</a></li>{% endif %}
+            </ul>
+        </header>
+        <div class="container">
+            <div class="text-box">
+                <h2>Its not just a Coffee <br>Its  <span>Starbucks</span></h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor modi consequatur nulla, fugit odit rerum quaerat illo at! Nihil velit tempore debitis. Doloribus quasi perspiciatis fuga nulla aspernatur necessitatibus adipisci.</p>
+                <a href="#">learn More</a>
+            </div>
+            <div class="img-box">
+                <img src="https://raw.githubusercontent.com/farazc60/Project-Images/main/starbucks/img1.png" class="starbucks" alt="">
+            </div>
+        </div>
+        <ul class="thumb">
+            <li><img src="https://raw.githubusercontent.com/farazc60/Project-Images/main/starbucks/thumb1.png" onclick="imgSlider('https://raw.githubusercontent.com/farazc60/Project-Images/main/starbucks/img1.png');changeCircleColor('#017143')"></li>
+            <li><img src="https://raw.githubusercontent.com/farazc60/Project-Images/main/starbucks/thumb2.png" onclick="imgSlider('https://raw.githubusercontent.com/farazc60/Project-Images/main/starbucks/img2.png');changeCircleColor('#0eb7495')"></li>
+            <li><img src="https://raw.githubusercontent.com/farazc60/Project-Images/main/starbucks/thumb3.png" onclick="imgSlider('https://raw.githubusercontent.com/farazc60/Project-Images/main/starbucks/img3.png');changeCircleColor('#d752b1')"></li>
+        </ul>
+        <ul class="social">
+            <li><a href="#"><img src="https://raw.githubusercontent.com/farazc60/Project-Images/main/starbucks/facebook.png"></a></li>
+            <li><a href="#"><img src="https://raw.githubusercontent.com/farazc60/Project-Images/main/starbucks/instagram.png"></a></li>
+            <li><a href="#"><img src="https://raw.githubusercontent.com/farazc60/Project-Images/main/starbucks/twitter.png"></a></li>
+        </ul>
+    </section>
+
+    {% include "add-card.html" %}
+
+    {{client_secret |json_script:"client_secret"}}
+    {{STRIPE_PUBLISHABLE_KEY |json_script:"STRIPE_PUBLISHABLE_KEY"}}
+
+	<script src="https://fastly.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+    <script>function imgSlider(anything){   document.querySelector('.starbucks').src = anything; }</script>
+
+</body>
+</html>
+
+<script>
+    function openAddCardModal(modalId) {
+        let modal = document.querySelector(`#${modalId}`);
+        let form = modal.querySelector("form");
+        modal.addEventListener('hidden.bs.modal', event => {
+            form.reset();
+            form.removeAttribute("onsubmit");
+            modal.querySelector('.btn-text').innerText = 'Save';
+            document.querySelector('.create-error-msg').classList.remove('active');
+            document.querySelector('.create-error-msg').innerText = "";
+        })
+        document.querySelector(`.${modalId}`).click();
+    }
+</script>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    // Set your publishable key
+    const stripe = Stripe('{{ STRIPE_PUBLISHABLE_KEY }}');
+
+    // Create an instance of Elements
+    const elements = stripe.elements();
+
+    // Create an instance of the card Element
+    const card = elements.create('card');
+
+    // Add an instance of the card Element into the `card-element` div
+    card.mount('#card-element');
+
+    // Handle real-time validation errors from the card Element
+    card.addEventListener('change', function(event) {
+        const displayError = document.getElementById('card-errors');
+        if (event.error) {
+            displayError.textContent = event.error.message;
+        } else {
+            displayError.textContent = '';
+        }
+    });
+
+    // Handle form submission
+    const form = document.getElementById('payment-form');
+    form.addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        const {setupIntent, error} = await stripe.confirmCardSetup(
+            '{{ client_secret }}', {
+                payment_method: {
+                    card: card,
+                },
+            }
+        );
+
+        if (error) {
+            // Display error.message in your UI
+            const errorElement = document.getElementById('card-errors');
+            errorElement.textContent = error.message;
+        } else {
+            // The setup has succeeded. Send the setupIntent.id to your server
+            stripeTokenHandler(setupIntent.payment_method);
+        }
+    });
+
+    // Submit the form with the payment_method_id
+    function stripeTokenHandler(payment_method_id) {
+        // Insert the payment_method_id into the form so it gets submitted to the server
+        const form = document.getElementById('payment-form');
+        const hiddenInput = document.createElement('input');
+        hiddenInput.setAttribute('type', 'hidden');
+        hiddenInput.setAttribute('name', 'payment_method_id');
+        hiddenInput.setAttribute('value', payment_method_id);
+        form.appendChild(hiddenInput);
+
+        console.log(payment_method_id)
+        // Submit the form
+        handlecard(payment_method_id)
+    }
+
+    async function handlecard(payment_method_id){
+        let headers = {
+            'Content-Type': 'application/json',
+        };
+        let response = await requestAPI("/add-card/", JSON.stringify({ payment_method_id: payment_method_id }), headers, "POST");
+        let res = await response.json();
+        console.log(res, response)
+    }
+    
+
+    async function requestAPI(url, data, headers, method) {
+        // Default options are marked with *
+        const response = await fetch(url, {
+            method: method,
+            mode: 'cors',
+            // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            headers: headers,
+            body: data,
+        });
+        return response; // parses JSON response into native JavaScript objects
+    }
+</script>
