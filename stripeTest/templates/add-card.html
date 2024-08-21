@@ -1,0 +1,15 @@
+{% load static %}
+<div class="modal fade " id="add-category-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="addUserLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center ">
+            <form class="main-content-container add-card-container"id="payment-form">
+                {% csrf_token %}
+                <div id="card-element"><!-- Stripe.js injects the Card Element here --></div>
+                <button id="submit">Add Card</button>
+                <div id="card-errors" role="alert"></div>
+            </form>
+        </div>
+    </div>
+</div>
+<input type="hidden" class="add-category-modal" data-bs-toggle="modal" data-bs-target="#add-category-modal" />
